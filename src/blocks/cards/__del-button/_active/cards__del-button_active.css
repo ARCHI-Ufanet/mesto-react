@@ -1,0 +1,15 @@
+.cards__del-button_active {
+    position: absolute;
+    width: 18px;
+    height: 19px;
+    right: 20px;
+    top: 20px;
+    opacity: 1;
+    transition: opacity .2s linear;
+    visibility: visible;
+}
+
+.cards__del-button:hover {
+    opacity: .5;
+    cursor: pointer;
+}
