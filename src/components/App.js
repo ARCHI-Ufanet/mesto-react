@@ -1,21 +1,20 @@
-import React from 'react';
-import PopupEditProfile from '../../src/components/PopupEditProfile.js'
-import PopupAddPlace from '../../src/components/PopupAddPlace.js'
-import PopupEditAvatar from '../../src/components/PopupEditAvatar.js';
-import PopupWithConfirm from '../../src/components/PopupWithConfirm.js';
-import ImagePopup from '../../src/components/ImagePopup.js';
-import Header from '../../src/components/Header.js';
-import Main from '../../src/components/Main.js';
-import Footer from '../../src/components/Footer.js'
-import '../../src/index.css';
+import React, { useState, useEffect } from 'react';
+import PopupEditProfile from './PopupEditProfile.js'
+import PopupAddPlace from './PopupAddPlace.js'
+import PopupEditAvatar from './PopupEditAvatar.js';
+import PopupWithConfirm from './PopupWithConfirm.js';
+import ImagePopup from './ImagePopup.js';
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js'
 
 export default function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   function handleEditProfileClick() {setIsEditProfilePopupOpen(true)};
   function handleAddPlaceClick() {setIsAddPlacePopupOpen(true)};

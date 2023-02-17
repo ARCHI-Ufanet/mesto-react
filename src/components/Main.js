@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {api} from '../../src/utils/Api.js';
-import Card from '../../src/components/Card.js';
+import Card from './Card.js';
 
 export default function Main(props) {
-    const [userAvatar, setUserAvatar] = React.useState('#');
-    const [userName, setUserName] = React.useState('#');
-    const [userDescription, setUserDescription] = React.useState('#');
-    const [cards, setCards] = React.useState([]);
+    const [userAvatar, setUserAvatar] = useState('#');
+    const [userName, setUserName] = useState('#');
+    const [userDescription, setUserDescription] = useState('#');
+    const [cards, setCards] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const me = api.getUserInfo();
         const cards = api.getInitialCards();
     
@@ -22,7 +22,7 @@ export default function Main(props) {
             .catch((err) => {
                 console.log(err);
             }); 
-    }); 
+    }, []); 
     
     return (
         <main>
@@ -38,9 +38,9 @@ export default function Main(props) {
                 <button onClick={props.onAddPlace} className="profile__add-card-button" type="button"></button>
             </section>
             <section className="cards">
-                {cards.map((card, i) => (
+                {cards.map((card, _id) => (
                     <Card
-                        key = {i}
+                        key = {_id}
                         card = {card}
                         onCardClick = {props.onCardClick}
                     />

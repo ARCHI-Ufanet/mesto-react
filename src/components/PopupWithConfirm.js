@@ -1,15 +1,15 @@
 import React from 'react';
 import PopupWithForm from '../../src/components/PopupWithForm.js';
 
-export default function PopupWithConfirm(props) {
+export default function PopupWithConfirm({isOpen, onClose}) {
     return (
         <PopupWithForm 
             title = 'Вы уверены?'
             name = 'confirm'
-            isOpen = {props.isOpen}
-            onClose = {props.onClose}
+            isOpen = {isOpen}
+            onClose = {onClose}
+            SbmtBtnText = 'Да'
         >
-            <button className="popup__submit-button" type="submit">Да</button>
         </PopupWithForm>
     );
 }
