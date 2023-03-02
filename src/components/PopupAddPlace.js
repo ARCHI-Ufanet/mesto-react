@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PopupWithForm from '../../src/components/PopupWithForm.js';
 
-export default function PopupAddPlace({isOpen, onClose}) {
+export default function PopupAddPlace({isOpen, onClose, onAddPlace}) {
+    const placeNameRef = useRef();
+    const placeLinkRef = useRef();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        onAddPlace({
+            name: placeNameRef.current.value,
+            link: placeLinkRef.current.value
+        });
+        
+        placeNameRef.current.value = '';
+        placeLinkRef.current.value = '';
+    }
+
     return (
         <PopupWithForm 
             title = 'Новое место'
@@ -9,10 +24,28 @@ export default function PopupAddPlace({isOpen, onClose}) {
             isOpen = {isOpen}
             onClose = {onClose}
             SbmtBtnText = 'Сохранить'
+            onSubmit = {handleSubmit}
         >
-            <input className="popup__input popup__input_type_title" id="title" name="name" type="text" placeholder="Название" required minLength="2" maxLength="30"/>
+            <input 
+                ref={placeNameRef}
+                className="popup__input popup__input_type_title" 
+                id="title" 
+                name="name" 
+                type="text" 
+                placeholder="Название" 
+                required minLength="2" 
+                maxLength="30"
+            />
             <span className="popup__eror" id="title-error"></span>
-            <input className="popup__input popup__input_type_link" name="link" id="link" type="url" placeholder="Ссылка на картинку" required/>
+            <input 
+                ref={placeLinkRef}
+                className="popup__input popup__input_type_link" 
+                name="link" 
+                id="link" 
+                type="url" 
+                placeholder="Ссылка на картинку" 
+                required
+            />
             <span className="popup__eror" id="link-error"></span>
         </PopupWithForm>
     );
