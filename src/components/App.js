@@ -41,7 +41,7 @@ export default function App() {
           setCards(cards);
         })
         .catch((err) => {
-            alert(err);
+          console.log(err);
         }); 
   }, []);
 
@@ -49,30 +49,30 @@ export default function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     if (!isLiked) {
       api.likeCard(card._id, !isLiked)
-      .then((newCard) => {
-        setCards(cards.map((c) => c._id === card._id ? newCard : c));
-      })
-      .catch((err) => {
-        alert(err);
-      });
+        .then((newCard) => {
+          setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       api.unlikeCard(card._id, isLiked)
-      .then((newCard) => {
-        setCards(cards.map((c) => c._id === card._id ? newCard : c));
-      })
-      .catch((err) => {
-        alert(err);
-      });
+        .then((newCard) => {
+          setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   function handleCardDel(card) {
       api.delCard(card._id)
       .then(() => {
-        setCards(cards.filter(c => c._id !== card._id));
+        setCards((cards) => cards.filter(c => c._id !== card._id));
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   };
 
@@ -83,7 +83,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   };
 
@@ -94,7 +94,7 @@ export default function App() {
       closeAllPopups();
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     })
   }
 
@@ -105,7 +105,7 @@ export default function App() {
       closeAllPopups();
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     })
   }
 
@@ -116,7 +116,6 @@ export default function App() {
         onEditProfile = {handleEditProfileClick}
         onAddPlace = {handleAddPlaceClick}
         onEditAvatar = {handleEditAvatarClick}
-        onConfirm = {handleConfirm}
         onCardClick = {handleCardClick}
         onCardLike = {handleCardLike}
         onCardDel = {handleCardDel}
@@ -145,6 +144,7 @@ export default function App() {
       <PopupWithConfirm 
         isOpen = {isConfirmPopupOpen}
         onClose = {closeAllPopups}
+        onConfirm = {handleConfirm}
       />
 
       <ImagePopup

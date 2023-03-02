@@ -1,9 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PopupWithForm from '../../src/components/PopupWithForm.js';
 
 export default function PopupAddPlace({isOpen, onClose, onAddPlace}) {
     const placeNameRef = useRef();
     const placeLinkRef = useRef();
+
+    useEffect(() => {
+        placeNameRef.current.value = '';
+        placeLinkRef.current.value = '';
+    }, [isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -12,10 +17,7 @@ export default function PopupAddPlace({isOpen, onClose, onAddPlace}) {
             name: placeNameRef.current.value,
             link: placeLinkRef.current.value
         });
-        
-        placeNameRef.current.value = '';
-        placeLinkRef.current.value = '';
-    }
+    };
 
     return (
         <PopupWithForm 
@@ -23,7 +25,7 @@ export default function PopupAddPlace({isOpen, onClose, onAddPlace}) {
             name = 'add-card'
             isOpen = {isOpen}
             onClose = {onClose}
-            SbmtBtnText = 'Сохранить'
+            buttonSubmitText = 'Сохранить'
             onSubmit = {handleSubmit}
         >
             <input 

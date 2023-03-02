@@ -5,11 +5,11 @@ class Api {
     };
 
     _checkRes(res) {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
+        if (res.ok) {
+            return res.json();
         }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
     
 
     getInitialCards() {

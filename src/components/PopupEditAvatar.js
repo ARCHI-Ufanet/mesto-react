@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PopupWithForm from '../../src/components/PopupWithForm.js';
 
 export default function PopupEditAvatar({isOpen, onClose, onUpdateAvatar}) {
-    const avatarLinkRef = React.useRef()
+    const avatarLinkRef = useRef()
+    
+    useEffect(() => {
+        avatarLinkRef.current.value = '';
+    }, [isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -11,8 +15,8 @@ export default function PopupEditAvatar({isOpen, onClose, onUpdateAvatar}) {
             avatar: avatarLinkRef.current.value
         });
 
-        avatarLinkRef.current.value = '';
-    }
+        
+    };
 
     return (
         <PopupWithForm 
@@ -20,7 +24,7 @@ export default function PopupEditAvatar({isOpen, onClose, onUpdateAvatar}) {
             name = 'change-avatar'
             isOpen = {isOpen}
             onClose = {onClose}
-            SbmtBtnText = 'Сохранить'
+            buttonSubmitText = 'Сохранить'
             onSubmit = {handleSubmit}
         >
             <input

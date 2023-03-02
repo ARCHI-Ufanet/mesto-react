@@ -10,7 +10,7 @@ export default function PopupEditProfile({isOpen, onClose,  onUpdateUser }) {
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [isOpen, currentUser]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -34,7 +34,7 @@ export default function PopupEditProfile({isOpen, onClose,  onUpdateUser }) {
             name = 'edit-profile'
             isOpen = {isOpen}
             onClose = {onClose}
-            SbmtBtnText = 'Сохранить'
+            buttonSubmitText = 'Сохранить'
             onSubmit = {handleSubmit}
         >
             <input 
